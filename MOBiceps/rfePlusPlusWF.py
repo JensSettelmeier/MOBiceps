@@ -88,7 +88,10 @@ def execute_rfePP(
             remove_file_extension
         )  # was "file"
         sample_annotation.set_index("files", inplace=True)  # was "file"
-        sample_annotation = sample_annotation.loc[list(X.index)].copy()
+        index1 = sample_annotation.index
+        index2 = X.index
+        intersec = index1.intersection(index2)
+        sample_annotation = sample_annotation.loc[intersec].copy()
     else:
         sample_annotation = None
 
